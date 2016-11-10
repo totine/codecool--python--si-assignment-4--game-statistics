@@ -41,9 +41,19 @@ class Tester(unittest.TestCase):
             print("Function 'count_games' is passed. 2 points.")
 
     def test_2_decide(self):
-        result = reports.decide(self.input_file, 2000)
-        self.assertTrue(result)
-        if result:
+        correct = True
+
+        game_found = reports.decide(self.input_file, 2000)
+        self.assertTrue(game_found)
+        if not game_found:
+            correct = False
+
+        game_not_found = reports.decide(self.input_file, 2016)
+        self.assertFalse(game_not_found)
+        if game_not_found:
+            correct = False
+
+        if correct:
             self.points += 2
             print("Function 'decide' is passed. 2 points.")
 
